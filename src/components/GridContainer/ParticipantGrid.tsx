@@ -74,7 +74,7 @@ function ParticipantGrid({
               }, 150)
             }}
           >
-            <ArrowLeftStartOnRectangleIcon className="text-red-400 w-full h-full" />
+            <ArrowLeftStartOnRectangleIcon className="w-full h- text-red-400" />
           </IconButton>
         </div>
       </div>
@@ -94,7 +94,7 @@ function IconButton({
   return (
     <button
       onClick={onClick}
-      className="w-10 h-10 p-2 cursor-pointer rounded-full hover:bg-slate-700 bg-slate-800 border-slate-700"
+      className="w-10 h-10 p-2 cursor-pointer rounded-full bg-slate-800 border-slate-600 hover:bg-slate-700"
     >
       {children}
     </button>

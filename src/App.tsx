@@ -1,5 +1,9 @@
 import { useState } from "react"
-import { TvIcon, UserPlusIcon } from "@heroicons/react/24/outline"
+import {
+  TvIcon,
+  UserPlusIcon,
+  UserGroupIcon,
+} from "@heroicons/react/24/outline"
 import "./App.css"
 
 import { AppContextWrapper, useAppState, AspectRatio } from "./AppContext"
@@ -17,7 +21,8 @@ function App() {
 export default App
 
 function ConferenceUI() {
-  const { aspectRatio, setAspectRatio, addParticipant } = useAppState()
+  const { aspectRatio, setAspectRatio, addParticipant, participants } =
+    useAppState()
   const [open, setOpen] = useState(false)
 
   return (
@@ -26,17 +31,15 @@ function ConferenceUI() {
         <main className="flex-1 text-green-300 overlflow-hidden">
           <GridContainer />
         </main>
-        <div className="h-16 flex flex-row justify-center items-center space-x-4 p-1 pb-4">
-          <button onClick={() => setOpen(status => !status)}>
-            {"Sidebar"}
-          </button>
-
-          <button
-            onClick={() => addParticipant()}
-            className="w-12 h-12 p-2 cursor-pointer rounded-full border text-blue-300 bg-slate-800 hover:bg-slate-700 border-slate-600"
-          >
-            <UserPlusIcon className="w-full h-full" />
-          </button>
+        <div className="relative h-16 flex flex-row justify-center items-center space-x-4 p-1 pb-4">
+          <div className="flex flex-row items-center justify-center space-x-2">
+            <button
+              onClick={() => addParticipant()}
+              className="w-12 h-12 p-2 cursor-pointer rounded-full border text-blue-300 bg-slate-800 hover:bg-slate-700 border-slate-600"
+            >
+              <UserPlusIcon className="w-full h-full" />
+            </button>
+          </div>
 
           <div className="px-4 flex flex-row items-center justify-center space-x-2">
             <button
@@ -62,6 +65,13 @@ function ConferenceUI() {
               {"4:3"}
             </button>
           </div>
+          <button
+            className="absolute right-4 flex flex-row items-center border rounded-md font-semibold px-4 py-2 bg-slate-800 border-slate-600 text-blue-300 hover:bg-slate-700"
+            onClick={() => setOpen(status => !status)}
+          >
+            <UserGroupIcon className="w-6 h-6 mr-2" />
+            {participants.length}
+          </button>
         </div>
       </div>
       <aside
