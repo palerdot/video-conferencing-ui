@@ -28,15 +28,15 @@ const Row = ({
   return (
     <div
       style={style}
-      className="border-b border-slate-200 flex items-center px-2 flex-row justify-between"
+      className="border-b border-slate-700 flex items-center px-2 flex-row justify-between"
     >
       <div className="flex flex-row items-center w-5/6">
         <UserIcon
           className={`w-5 h-5 mr-2 ${
-            participant.isOnscreen ? "text-blue-500" : "text-slate-500"
+            participant.isOnscreen ? "text-blue-400" : "text-slate-400"
           }`}
         />
-        <div className="text-sm text-gray-700 truncate w-fit text-ellipsis">
+        <div className="text-sm text-gray-300 truncate w-fit text-ellipsis">
           {participant.fullName}
         </div>
       </div>
@@ -71,17 +71,17 @@ function Sidebar({ close }: Props) {
   return (
     <nav
       ref={container}
-      className="overflow-hidden flex-1 flex flex-col border border-gray-800 rounded-md bg-slate-100 text-gray-700"
+      className="overflow-hidden flex-1 flex flex-col border border-gray-800 rounded-md bg-slate-800 text-gray-200"
     >
-      <div className="h-[48px] border-b border-slate-200 flex items-center justify-between p-2 pr-1">
+      <div className="h-[48px] border-b border-slate-700 flex items-center justify-between p-2 pr-1">
         <div className="flex flex-row items-center">
           <UserGroupIcon className="w-6 h-6 text-blue-400 mr-2" />
-          <span className="text-base font-medium text-gray-700">
+          <span className="text-base font-medium text-blue-400">
             {`${participants.length} in call`}
           </span>
         </div>
         <XMarkIcon
-          className="w-8 h-8 hover:bg-slate-200 rounded-full p-0.5"
+          className="w-8 h-8 hover:bg-slate-700 rounded-full p-0.5"
           onClick={() => close()}
         />
       </div>
