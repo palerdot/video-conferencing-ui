@@ -6,7 +6,7 @@ import {
   useCallback,
   useMemo,
 } from "react"
-import { partition, take, times } from "lodash-es"
+import { partition, take, times, delay } from "lodash-es"
 import { faker } from "@faker-js/faker"
 
 export enum AspectRatio {
@@ -19,6 +19,8 @@ export type Participant = {
   fullName: string
   firstName: string
   isOnscreen: boolean
+  // primarily for entry/exit animations, but in real world app could have other uses
+  loaded: boolean
 }
 
 export type AppState = {
@@ -54,6 +56,20 @@ export function useAppState() {
 export function AppContextWrapper({ children }: { children: React.ReactNode }) {
   const [participants, setParticipants] = useState(DEFAULT_PARTICIPANTS)
   const [aspectRatio, setAspectRatio] = useState(AspectRatio.SixteenNine)
+
+  // entry animation for default participants
+  useEffect(() => {
+    delay(() => {
+      setParticipants(current => {
+        return current.map(p => {
+          return {
+            ...p,
+            loaded: true,
+          }
+        })
+      })
+    }, 150)
+  }, [DEFAULT_PARTICIPANTS, setParticipants])
 
   // calculate onscreen participants based on participants
   useEffect(() => {
@@ -104,12 +120,43 @@ export function AppContextWrapper({ children }: { children: React.ReactNode }) {
 
   const addParticipant = useCallback(() => {
     const participant: Participant = generateParticipant()
+    // initially participant will be added in not loaded state
     setParticipants(current => [...current, participant])
+    // setting loading to true for entry animation
+    delay(() => {
+      setParticipants(current => {
+        return current.map(p => {
+          if (p.id === participant.id) {
+            return {
+              ...p,
+              loaded: true,
+            }
+          }
+          return p
+        })
+      })
+    }, 150)
   }, [setParticipants])
 
   const removeParticipant = useCallback(
     (id: Participant["id"]) => {
-      setParticipants(current => current.filter(p => p.id !== id))
+      // set loaded: false for exit animation
+      setParticipants(current => {
+        return current.map(p => {
+          if (p.id === id) {
+            return {
+              ...p,
+              loaded: false,
+            }
+          }
+          return p
+        })
+      })
+
+      // and remove the participant after a delay
+      delay(() => {
+        setParticipants(current => current.filter(p => p.id !== id))
+      }, 150)
     },
     [setParticipants]
   )
@@ -137,5 +184,6 @@ function generateParticipant(): Participant {
     fullName: faker.person.fullName(),
     firstName: faker.person.firstName(),
     isOnscreen: false,
+    loaded: false,
   }
 }

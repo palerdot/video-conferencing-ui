@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react"
-import { delay } from "lodash-es"
+import React, { useState } from "react"
 import {
   ArrowLeftStartOnRectangleIcon,
   VideoCameraIcon,
@@ -20,13 +19,9 @@ function ParticipantGrid({
   removeParticipant,
   width,
   height,
+  loaded,
 }: Props) {
-  const [loaded, setLoaded] = useState(false)
   const [video, setVideo] = useState(false)
-
-  useEffect(() => {
-    delay(() => setLoaded(true), 150)
-  }, [setLoaded])
 
   return (
     <div
@@ -68,10 +63,7 @@ function ParticipantGrid({
           </IconButton>
           <IconButton
             onClick={() => {
-              setLoaded(false)
-              delay(() => {
-                removeParticipant(id)
-              }, 150)
+              removeParticipant(id)
             }}
           >
             <ArrowLeftStartOnRectangleIcon className="w-full h- text-red-400" />
