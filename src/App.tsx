@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { TvIcon, UserPlusIcon } from "@heroicons/react/24/outline"
 import "./App.css"
 
 import { AppContextWrapper, useAppState, AspectRatio } from "./AppContext"
@@ -16,7 +17,7 @@ function App() {
 export default App
 
 function ConferenceUI() {
-  const { setAspectRatio, addParticipant, onScreenParticipants } = useAppState()
+  const { aspectRatio, setAspectRatio, addParticipant } = useAppState()
   const [open, setOpen] = useState(false)
 
   return (
@@ -25,19 +26,42 @@ function ConferenceUI() {
         <main className="flex-1 text-green-300 overlflow-hidden">
           <GridContainer />
         </main>
-        <div className="h-12 space-x-4">
+        <div className="h-16 flex flex-row justify-center items-center space-x-4 p-1 pb-4">
           <button onClick={() => setOpen(status => !status)}>
             {"Sidebar"}
           </button>
+
           <button
             onClick={() => addParticipant()}
-          >{`Add User ${onScreenParticipants.length}`}</button>
-          <button onClick={() => setAspectRatio(AspectRatio.SixteenNine)}>
-            {"16:9"}
+            className="w-12 h-12 p-2 cursor-pointer rounded-full border text-blue-300 bg-slate-800 hover:bg-slate-700 border-slate-600"
+          >
+            <UserPlusIcon className="w-full h-full" />
           </button>
-          <button onClick={() => setAspectRatio(AspectRatio.FourThree)}>
-            {"4:3"}
-          </button>
+
+          <div className="px-4 flex flex-row items-center justify-center space-x-2">
+            <button
+              className={`flex flex-row items-center border rounded-md font-semibold px-4 py-2 ${
+                aspectRatio === AspectRatio.SixteenNine
+                  ? "bg-slate-700 border-slate-500 text-blue-300 "
+                  : "bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-800"
+              }`}
+              onClick={() => setAspectRatio(AspectRatio.SixteenNine)}
+            >
+              <TvIcon className="w-5 h-5 mr-2" />
+              {"16:9"}
+            </button>
+            <button
+              className={`flex flex-row items-center border rounded-md font-semibold px-4 py-2 ${
+                aspectRatio === AspectRatio.FourThree
+                  ? "bg-slate-700 border-slate-500 text-blue-300 "
+                  : "bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-800"
+              }`}
+              onClick={() => setAspectRatio(AspectRatio.FourThree)}
+            >
+              <TvIcon className="w-5 h-5 mr-2" />
+              {"4:3"}
+            </button>
+          </div>
         </div>
       </div>
       <aside

@@ -71,7 +71,7 @@ function Sidebar({ close }: Props) {
     >
       <div className="h-[48px] border-b border-slate-200 flex items-center justify-between p-2 pr-1">
         <div className="flex flex-row items-center">
-          <UserGroupIcon className="w-6 h-6 text-purple-600 mr-2" />
+          <UserGroupIcon className="w-6 h-6 text-blue-500 mr-2" />
           <span className="text-base font-medium text-gray-700">
             {`${participants.length} in call`}
           </span>
