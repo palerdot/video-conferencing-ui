@@ -18,6 +18,7 @@ export type Participant = {
 }
 
 export type AppState = {
+  totalParticipants: number
   participants: Array<Participant>
   onScreenParticipants: Array<Participant>
   addParticipant: () => void
@@ -27,6 +28,7 @@ export type AppState = {
 }
 
 const defaultState: AppState = {
+  totalParticipants: 0,
   participants: [],
   onScreenParticipants: [],
   addParticipant: () => {},
@@ -102,6 +104,11 @@ export function AppContextWrapper({ children }: { children: React.ReactNode }) {
     return onScreen
   }, [participants])
 
+  // total participants count
+  const totalParticipants = useMemo(() => {
+    return participants.length
+  }, [participants])
+
   const addParticipant = useCallback(() => {
     const participant: Participant = generateParticipant()
     // initially participant will be added in not loaded state
@@ -150,6 +157,7 @@ export function AppContextWrapper({ children }: { children: React.ReactNode }) {
       value={{
         participants,
         onScreenParticipants,
+        totalParticipants,
         addParticipant,
         removeParticipant,
         aspectRatio,

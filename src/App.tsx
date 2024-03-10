@@ -30,7 +30,7 @@ function ConferenceUI() {
     setAspectRatio,
     addParticipant,
     removeParticipant,
-    participants,
+    totalParticipants,
     onScreenParticipants,
   } = useAppState()
   const [open, setOpen] = useState(false)
@@ -91,7 +91,7 @@ function ConferenceUI() {
             onClick={() => setOpen(status => !status)}
           >
             <UserGroupIcon className="w-6 h-6 mr-2" />
-            {participants.length}
+            {totalParticipants}
           </button>
         </div>
       </div>
