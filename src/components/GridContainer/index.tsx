@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect, useMemo } from "react"
 import { debounce, isEqual } from "lodash-es"
 
-import { useAppState } from "../../AppContext"
+import useAppState from "../../hooks/useAppState"
 import { calculate_grid_dimension, type Dimension } from "../../utils"
 import ParticipantGrid from "./ParticipantGrid"
 
@@ -42,7 +42,7 @@ function GridContainer() {
     }
 
     const ro = new ResizeObserver(entries => {
-      for (let entry of entries) {
+      for (const entry of entries) {
         const cr = entry.contentRect
 
         dimensionObserver({
@@ -55,7 +55,7 @@ function GridContainer() {
     // Observe one or multiple elements
     // ref: https://web.dev/articles/resize-observer
     ro.observe(container.current)
-  }, [container])
+  }, [container, dimensionObserver])
 
   return (
     <div

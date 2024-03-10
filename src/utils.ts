@@ -1,6 +1,7 @@
-import { maxBy, round } from "lodash-es"
+import { maxBy, round, times } from "lodash-es"
+import { faker } from "@faker-js/faker"
 
-import { AspectRatio } from "./AppContext"
+import { type Participant } from "./AppContext"
 
 export type Dimension = {
   width: number
@@ -11,6 +12,26 @@ type GridInput = {
   dimension: Dimension
   total_grids: number
   aspect_ratio: AspectRatio
+}
+
+export enum AspectRatio {
+  FourThree = 1.33,
+  SixteenNine = 1.78,
+}
+
+export const MAX_ONSCREEN_PARTICIPANTS = 49
+
+export const DEFAULT_PARTICIPANTS = times(3, generateParticipant)
+
+// helper function to generate fake participant
+export function generateParticipant(): Participant {
+  return {
+    id: faker.string.uuid(),
+    fullName: faker.person.fullName(),
+    firstName: faker.person.firstName(),
+    isOnscreen: false,
+    loaded: false,
+  }
 }
 
 export function calculate_grid_dimension(input: GridInput): Dimension {

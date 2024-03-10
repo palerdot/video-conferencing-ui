@@ -1,18 +1,12 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useCallback,
-  useMemo,
-} from "react"
-import { partition, take, times, delay } from "lodash-es"
-import { faker } from "@faker-js/faker"
+import { createContext, useState, useEffect, useCallback, useMemo } from "react"
+import { partition, take, delay } from "lodash-es"
 
-export enum AspectRatio {
-  FourThree = 1.33,
-  SixteenNine = 1.78,
-}
+import {
+  DEFAULT_PARTICIPANTS,
+  generateParticipant,
+  MAX_ONSCREEN_PARTICIPANTS,
+  AspectRatio,
+} from "./utils"
 
 export type Participant = {
   id: string
@@ -32,10 +26,6 @@ export type AppState = {
   setAspectRatio: (ar: AspectRatio) => void
 }
 
-const MAX_ONSCREEN_PARTICIPANTS = 49
-
-const DEFAULT_PARTICIPANTS = times(3, generateParticipant)
-
 const defaultState: AppState = {
   participants: [],
   onScreenParticipants: [],
@@ -46,12 +36,6 @@ const defaultState: AppState = {
 }
 
 export const AppContext = createContext(defaultState)
-
-export function useAppState() {
-  const state = useContext(AppContext)
-
-  return state
-}
 
 export function AppContextWrapper({ children }: { children: React.ReactNode }) {
   const [participants, setParticipants] = useState(DEFAULT_PARTICIPANTS)
@@ -69,7 +53,7 @@ export function AppContextWrapper({ children }: { children: React.ReactNode }) {
         })
       })
     }, 150)
-  }, [DEFAULT_PARTICIPANTS, setParticipants])
+  }, [setParticipants])
 
   // calculate onscreen participants based on participants
   useEffect(() => {
@@ -175,15 +159,4 @@ export function AppContextWrapper({ children }: { children: React.ReactNode }) {
       {children}
     </AppContext.Provider>
   )
-}
-
-// helper function to generate fake participant
-function generateParticipant(): Participant {
-  return {
-    id: faker.string.uuid(),
-    fullName: faker.person.fullName(),
-    firstName: faker.person.firstName(),
-    isOnscreen: false,
-    loaded: false,
-  }
 }

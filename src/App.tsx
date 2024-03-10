@@ -8,7 +8,9 @@ import {
 import { random } from "lodash-es"
 import "./App.css"
 
-import { AppContextWrapper, useAppState, AspectRatio } from "./AppContext"
+import { AppContextWrapper } from "./AppContext"
+import useAppState from "./hooks/useAppState"
+import { AspectRatio } from "./utils"
 import GridContainer from "./components/GridContainer"
 import Sidebar from "./components/Sidebar"
 

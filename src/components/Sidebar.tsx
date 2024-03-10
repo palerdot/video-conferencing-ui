@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect, useRef } from "react"
+import { useState, useLayoutEffect, useRef, type CSSProperties } from "react"
 import { FixedSizeList as List } from "react-window"
 import {
   XMarkIcon,
@@ -7,7 +7,8 @@ import {
   ArrowLeftStartOnRectangleIcon,
 } from "@heroicons/react/24/outline"
 
-import { type Participant, useAppState } from "../AppContext"
+import { type Participant } from "../AppContext"
+import useAppState from "../hooks/useAppState"
 
 const Row = ({
   index,
@@ -15,7 +16,7 @@ const Row = ({
   data,
 }: {
   index: number
-  style: any
+  style: CSSProperties | undefined
   data: Array<Participant>
 }) => {
   const { removeParticipant } = useAppState()
