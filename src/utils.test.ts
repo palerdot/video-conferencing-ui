@@ -1,9 +1,8 @@
 import { describe, test, expect } from "vitest"
 
-import { AspectRatio } from "./AppContext"
-import { calculate_grid_dimension } from "./utils"
+import { calculate_grid_dimension, AspectRatio } from "./utils"
 
-describe("grid dimensions test", () => {
+describe("3 grids: dimensions test", () => {
   test("landscape fit works fine", () => {
     const output = calculate_grid_dimension({
       total_grids: 3,
