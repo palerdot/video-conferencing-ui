@@ -49,7 +49,9 @@ function ParticipantGrid({
           ></video>
         ) : (
           <div className="flex flex-col justify-center w-full items-center">
-            <div className="text-blue-300">{`${fullName}`}</div>
+            <div className="text-blue-300 text-sm truncate max-w-fit">
+              {`${fullName}`}
+            </div>
             <div>
               <UserCircleIcon className="w-16 h-16 text-blue-300" />
             </div>
