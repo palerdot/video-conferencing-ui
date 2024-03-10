@@ -72,7 +72,7 @@ function Sidebar({ close }: Props) {
   return (
     <nav
       ref={container}
-      className="overflow-hidden flex-1 flex flex-col border border-gray-800 rounded-md bg-slate-800 text-gray-200"
+      className="overflow-hidden flex-1 flex flex-col border border-slate-600 rounded-md bg-slate-800 text-gray-200"
     >
       <div className="h-[48px] border-b border-slate-700 flex items-center justify-between p-2 pr-1">
         <div className="flex flex-row items-center">

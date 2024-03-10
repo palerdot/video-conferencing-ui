@@ -26,7 +26,7 @@ function ParticipantGrid({
 
   return (
     <div
-      className="w-full h-full p-1 rounded-lg shadow-lg bg-pink-500 delay-50 duration-250 transition-all"
+      className="w-full h-full p-1 rounded-lg shadow-lg bg-transparent delay-50 duration-250 transition-all"
       style={
         loaded
           ? {
@@ -39,7 +39,7 @@ function ParticipantGrid({
             }
       }
     >
-      <div className="bg-purple-600 relative flex justify-center h-full w-full overflow-hidden rounded-lg aspect-auto">
+      <div className="bg-slate-700 relative flex justify-center h-full w-full overflow-hidden rounded-lg aspect-auto">
         {video ? (
           <video
             className="aspect-auto"
