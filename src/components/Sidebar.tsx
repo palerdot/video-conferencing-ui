@@ -42,7 +42,7 @@ const Row = ({
       </div>
       <div className="w-1/6 flex justify-end">
         <ArrowLeftStartOnRectangleIcon
-          className="w-6 h-6 text-red-400 hover:text-red-500 cursor-pointer hover:bg-slate-200 rounded-full p-0.5"
+          className="w-6 h-6 text-red-400 hover:text-red-500 cursor-pointer hover:bg-slate-700 rounded-full p-0.5"
           onClick={() => {
             removeParticipant(participant.id)
           }}
