@@ -1,30 +1,21 @@
-# React + TypeScript + Vite
+# video-conferencing-ui
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Video Conferencing UI built with React/Typescript/Tailwind.
 
-Currently, two official plugins are available:
+### Running Locally
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```shell
+# install packages
+pnpm install
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+# run locally
+pnpm dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### About
+
+This repo contains an example video conferencing UI/layout for providing optimum video/call display layout for up to 49 participants.
+
+- The main helper module for calculating optimal grid dimension is at [utils.ts](./src/utils.ts). It calculates the grid dimension based on three inputs - video/call screen dimension, total number of participants and aspect ratio (`4:3`, `16:9`). Tests for this module is at [utils.test.ts](./src/utils.test.ts). The test primarily covers scenario for 3 participants as screen size calculation is more relevant for this particular number of participants (as participants increase, layout mostly tend to move towards square fit, 1, 4, 9 etc)
+- [Resize Observer](https://web.dev/articles/resize-observer) is used to calculate changing call screen dimensions as this is the recommended efficient way to watch for dimension changes of any html element.
+- [react-window](https://github.com/bvaughn/react-window) is used for rendering large offscreen lists like participant details.
