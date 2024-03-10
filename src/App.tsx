@@ -36,7 +36,7 @@ function ConferenceUI() {
   const [open, setOpen] = useState(false)
 
   return (
-    <div className="flex overflow-x-hidden h-screen w-screen">
+    <div className="flex overflow-x-hidden h-screen w-screen bg-slate-800">
       <div className="flex-1 flex flex-col">
         <main className="flex-1 text-green-300 overlflow-hidden">
           <GridContainer />

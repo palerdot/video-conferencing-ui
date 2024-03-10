@@ -3,6 +3,7 @@ import {
   PhoneXMarkIcon,
   VideoCameraIcon,
   VideoCameraSlashIcon,
+  UserCircleIcon,
 } from "@heroicons/react/24/outline"
 
 import { type Participant, type AppState } from "../../AppContext"
@@ -47,7 +48,12 @@ function ParticipantGrid({
             loop
           ></video>
         ) : (
-          <div className="flex justify-around">{`${fullName}`}</div>
+          <div className="flex flex-col justify-center w-full items-center">
+            <div className="text-blue-300">{`${fullName}`}</div>
+            <div>
+              <UserCircleIcon className="w-16 h-16 text-blue-300" />
+            </div>
+          </div>
         )}
         <div className="absolute bottom-0 w-full h-10 flex items-center space-x-4 justify-center bg-transparent">
           <IconButton
