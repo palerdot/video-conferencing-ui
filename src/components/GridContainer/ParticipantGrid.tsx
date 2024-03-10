@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import {
-  ArrowLeftStartOnRectangleIcon,
+  PhoneXMarkIcon,
   VideoCameraIcon,
   VideoCameraSlashIcon,
 } from "@heroicons/react/24/outline"
@@ -66,7 +66,7 @@ function ParticipantGrid({
               removeParticipant(id)
             }}
           >
-            <ArrowLeftStartOnRectangleIcon className="w-full h- text-red-400" />
+            <PhoneXMarkIcon className="w-full h- text-red-400" />
           </IconButton>
         </div>
       </div>

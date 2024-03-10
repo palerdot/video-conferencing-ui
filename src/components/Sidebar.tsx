@@ -4,7 +4,7 @@ import {
   XMarkIcon,
   UserGroupIcon,
   UserIcon,
-  ArrowLeftStartOnRectangleIcon,
+  PhoneXMarkIcon,
 } from "@heroicons/react/24/outline"
 
 import { type Participant } from "../AppContext"
@@ -42,8 +42,8 @@ const Row = ({
         </div>
       </div>
       <div className="w-1/6 flex justify-end">
-        <ArrowLeftStartOnRectangleIcon
-          className="w-6 h-6 text-red-400 hover:text-red-500 cursor-pointer hover:bg-slate-700 rounded-full p-0.5"
+        <PhoneXMarkIcon
+          className="w-8 h-8 text-red-400 hover:text-red-500 cursor-pointer hover:bg-slate-700 rounded-full p-1.5"
           onClick={() => {
             removeParticipant(participant.id)
           }}
@@ -78,7 +78,8 @@ function Sidebar({ close }: Props) {
         <div className="flex flex-row items-center">
           <UserGroupIcon className="w-6 h-6 text-blue-400 mr-2" />
           <span className="text-base font-medium text-blue-400">
-            {`${participants.length} in call`}
+            {`${participants.length} `}
+            {participants.length === 1 ? "participant" : "participants"}
           </span>
         </div>
         <XMarkIcon
