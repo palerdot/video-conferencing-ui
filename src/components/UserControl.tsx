@@ -5,7 +5,7 @@ import { random } from "lodash-es"
 import useAppState from "../hooks/useAppState"
 
 function UserControl() {
-  const [_isPending, startTransition] = useTransition()
+  const [, startTransition] = useTransition()
   const { addParticipant, removeParticipant, onScreenParticipants } =
     useAppState()
 

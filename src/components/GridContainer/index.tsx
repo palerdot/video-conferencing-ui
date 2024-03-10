@@ -6,7 +6,7 @@ import { calculate_grid_dimension, type Dimension } from "../../utils"
 import ParticipantGrid from "./ParticipantGrid"
 
 function GridContainer() {
-  const [_isPending, startTransition] = useTransition()
+  const [, startTransition] = useTransition()
   const { onScreenParticipants, aspectRatio, removeParticipant } = useAppState()
   // conference grid container layout dimension; will be updated by resise observer
   const [dimension, setDimension] = useState<Dimension>({ width: 0, height: 0 })
