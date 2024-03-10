@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, Suspense, lazy } from "react"
 import {
   PhoneXMarkIcon,
   VideoCameraIcon,
@@ -13,6 +13,10 @@ interface Props extends Participant {
   width: number
   height: number
 }
+
+// ref: https://react.dev/reference/react/lazy
+// lazy video component
+const Video = lazy(() => import("../Video"))
 
 function ParticipantGrid({
   id,
@@ -41,12 +45,15 @@ function ParticipantGrid({
     >
       <div className="bg-slate-700 relative flex justify-center h-full w-full overflow-hidden rounded-lg aspect-auto">
         {video ? (
-          <video
-            className="aspect-auto"
-            src={"https://samplelib.com/lib/preview/mp4/sample-5s.mp4"}
-            autoPlay
-            loop
-          ></video>
+          <Suspense
+            fallback={
+              <div className="mt-4">
+                <Loading />
+              </div>
+            }
+          >
+            <Video />
+          </Suspense>
         ) : (
           <div className="flex flex-col justify-center w-full items-center">
             <div className="text-blue-300 text-sm truncate max-w-fit">
@@ -98,5 +105,30 @@ function IconButton({
     >
       {children}
     </button>
+  )
+}
+
+function Loading() {
+  return (
+    <svg
+      className="animate-spin h-5 w-5 text-blue-300"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <circle
+        className="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="4"
+      ></circle>
+      <path
+        className="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+      ></path>
+    </svg>
   )
 }
