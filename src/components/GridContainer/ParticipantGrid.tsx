@@ -30,7 +30,7 @@ function ParticipantGrid({
 
   return (
     <div
-      className="w-full h-full p-1 rounded-lg shadow-lg bg-transparent delay-50 duration-250 transition-all"
+      className="w-full h-full p-1 rounded-lg shadow-lg bg-transparent delay-50 duration-500 transition-all"
       style={
         loaded
           ? {

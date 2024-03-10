@@ -147,7 +147,7 @@ export function AppContextWrapper({ children }: { children: React.ReactNode }) {
       // and remove the participant after a delay
       delay(() => {
         setParticipants(current => current.filter(p => p.id !== id))
-      }, 150)
+      }, 515)
     },
     [setParticipants]
   )
