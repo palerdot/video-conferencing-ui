@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, useMemo } from "react"
+import { useRef, useState, useEffect, useMemo, useTransition } from "react"
 import { debounce, isEqual } from "lodash-es"
 
 import useAppState from "../../hooks/useAppState"
@@ -6,6 +6,7 @@ import { calculate_grid_dimension, type Dimension } from "../../utils"
 import ParticipantGrid from "./ParticipantGrid"
 
 function GridContainer() {
+  const [_isPending, startTransition] = useTransition()
   const { onScreenParticipants, aspectRatio, removeParticipant } = useAppState()
   // conference grid container layout dimension; will be updated by resise observer
   const [dimension, setDimension] = useState<Dimension>({ width: 0, height: 0 })
@@ -13,15 +14,19 @@ function GridContainer() {
 
   const dimensionObserver = useMemo(() => {
     return debounce((dimension: Dimension) => {
-      setDimension(oldDimension => {
-        if (isEqual(oldDimension, dimension)) {
-          return oldDimension
-        }
+      startTransition(() => {
+        // ref: https://react.dev/reference/react/useTransition
+        // experimental useTransition() to mark container dimension change as non blocking
+        setDimension(oldDimension => {
+          if (isEqual(oldDimension, dimension)) {
+            return oldDimension
+          }
 
-        return dimension
+          return dimension
+        })
       })
     }, 150)
-  }, [setDimension])
+  }, [setDimension, startTransition])
 
   // individual grid dimension
   const gridDimension = useMemo(() => {
