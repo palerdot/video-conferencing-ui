@@ -2,6 +2,8 @@
 
 Video Conferencing UI built with React/Typescript/Tailwind.
 
+[Demo](https://palerdot.in/video-conferencing-ui/)
+
 ### Running Locally
 
 ```shell
@@ -20,3 +22,9 @@ This repo contains an example video conferencing UI for providing optimum video/
 - [Resize Observer](https://web.dev/articles/resize-observer) is used to calculate changing call screen dimensions as this is the recommended efficient way to watch for dimension changes of any html element.
 - [react-window](https://github.com/bvaughn/react-window) is used for rendering large offscreen lists like participant details.
 - [useTransition](https://react.dev/reference/react/useTransition) is used for non blocking state updates when main screen dimension changes. 
+
+#### Miscellaneous
+
+- `faker` is used for generating call participants data.
+- The app is bootstrapped with `vite`, `react-ts` template.
+- App is currently deployed to github pages as a static client side app.
